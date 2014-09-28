@@ -43,7 +43,7 @@ pyplot.subplot(211)
 pyplot.plot(sol[:,0],'-g',label='Susceptibles')
 pyplot.plot(sol[:,1],'-k',label='Infected')
 
-print "Survivors: %s" % sol[-1,0]
+print "Susceptible: %s" % sol[-1,0]
 print "Infected: %s" %sol[-1,1]
 print "Recovered: %s" % sol[-1,2]
 
