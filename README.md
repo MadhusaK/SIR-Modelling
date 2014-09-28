@@ -5,6 +5,6 @@ Standard simple SIR (Susceptible, Infected, and Recovered) Model for a ficticiou
 
 DE's:
 
-S' = -alpha*S*I + gamma*R - delta*S  
-I' = alpha*S*I - beta*I  
-R' = beta*I - gamma*R + delta*S  
+dS/dt = -alpha*S*I + gamma*R - delta*S  
+dI/dt = alpha*S*I - beta*I  
+dR/dt = beta*I - gamma*R + delta*S  
