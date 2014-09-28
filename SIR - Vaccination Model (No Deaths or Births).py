@@ -39,9 +39,15 @@ def diff_SIR(SIR,t):
 
 sol = scipy.integrate.odeint(diff_SIR,initial_pop,t_rng)
 
-pyplot.subplot(211)
 pyplot.plot(sol[:,0],'-g',label='Susceptibles')
-pyplot.plot(sol[:,1],'-k',label='Infected')
+pyplot.plot(sol[:,1],'-b',label='Infected')
+pyplot.plot(sol[:,2],'-r',label='Recovered')
+pyplot.legend(loc=0)
+pyplot.title('SIR - Change over time')
+pyplot.xlabel('Time')
+pyplot.ylabel('Population')
+pyplot.show()
+
 
 print "Susceptible: %s" % sol[-1,0]
 print "Infected: %s" %sol[-1,1]
