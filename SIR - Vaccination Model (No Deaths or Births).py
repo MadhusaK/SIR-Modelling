@@ -5,7 +5,7 @@ import SIRVariables as var
 
 # Parameters
 t_ini = 0.0
-t_end = 200.0
+t_end = 70.0
 t_inc = 1.0
 t_rng = numpy.arange(t_ini,t_end,t_inc)
 
@@ -28,7 +28,7 @@ x = numpy.linspace(x_min,x_max,points)
 y = numpy.linspace(y_min,y_max,points)
 X,Y = numpy.meshgrid(x,y)
 S_vecField = numpy.zeros(len(X))
-R_vecField = numpy.zeros(len(Y))
+I_vecField = numpy.zeros(len(Y))
 
 # System of equations - S,I, and R
 def diff_SIR(SIR,t=0):
@@ -50,6 +50,7 @@ def diff_SIR(SIR,t=0):
 
 sol = scipy.integrate.odeint(diff_SIR,initial_pop,t_rng)
 
+pyplot.hold()
 pyplot.figure(1)
 pyplot.plot(sol[:,0],'-g',label='Susceptibles')
 pyplot.plot(sol[:,1],'-b',label='Infected')
@@ -58,6 +59,7 @@ pyplot.legend(loc=0)
 pyplot.title('SIR - Change over time')
 pyplot.xlabel('Time')
 pyplot.ylabel('Population')
+pyplot.hold()
 pyplot.show()
 
 
@@ -69,13 +71,17 @@ print "Recovered: %s" % sol[-1,2]
 for i in range(0,len(X)):
     sol_Prime = diff_SIR(X[1],Y[1])
     S_vecField = sol_Prime[0]
-    R_vecField = sol_Prime[1]
+    I_vecField = sol_Prime[1]
     
 pyplot.figure(2)
-pyplot.quiver(X,Y,S_vecField,R_vecField)   
+pyplot.quiver(X,Y,S_vecField,I_vecField)   
 pyplot.hold()
-pyplot.plot(sol[:,0],sol[:,1])
-pyplot.axis(     )
+
+for j in numpy.arange(0,1,0.1):
+    sol = scipy.integrate.odeint(diff_SIR,[1-j,0.2,j],t_rng)
+    pyplot.plot(sol[:,0],sol[:,1])
+
+
 pyplot.hold()
 
 
