@@ -98,9 +98,9 @@ pyplot.ylabel('Infected')
 pyplot.ylim(0,1)
 pyplot.xlim(0,1)
 
-#for j in numpy.arange(0,0.1,0.05):
-#    sol = scipy.integrate.odeint(diff_SIR,[1-j,j,0],t_rng)
-#    pyplot.plot(sol[:,0],sol[:,1], label ='S =%s, I =%s' %(1,1))
+for j in numpy.arange(0,0.1,0.05):
+    sol = scipy.integrate.odeint(diff_SIR,[1-j,j,0],t_rng)
+    pyplot.plot(sol[:,0],sol[:,1], label ='S =%s, I =%s' %(1,1))
 
 for j in numpy.arange(0,1,0.1):
     sol = scipy.integrate.odeint(diff_SI,[1-j,j],t_rng)
