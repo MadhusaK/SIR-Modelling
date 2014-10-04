@@ -1,7 +1,7 @@
 import scipy.integrate
 import numpy
 import matplotlib.pyplot as pyplot
-import SIRVariables as var
+
 
 # Parameters
 t_ini = 0.0
@@ -9,10 +9,10 @@ t_end = 300.0
 t_inc = 1.0
 t_rng = numpy.arange(t_ini,t_end,t_inc)
 
-alpha = var.alpha
-beta = var.beta
-gamma = var.gamma
-delta = var.delta
+alpha = 0.2
+beta = 0.1
+gamma = 0.05
+delta = 0
 
 I0 = (1/2.043)*10**(-6)
 S0 = 1-I0
@@ -99,7 +99,7 @@ pyplot.ylim(0,1)
 pyplot.xlim(0,1)
 
 for j in numpy.arange(0,0.1,0.05):
-    sol = scipy.integrate.odeint(diff_SIR,[1-j,j,0],t_rng)
+    sol = scipy.integrate.odeint(diff_SI,[1-j,j],t_rng)
     pyplot.plot(sol[:,0],sol[:,1], label ='S =%s, I =%s' %(1,1))
 
 for j in numpy.arange(0,1,0.1):
