@@ -1,7 +1,7 @@
 SIR-Modelling
 =============
 
-SIR (Susceptible, Infected, and Recovered) Model for a ficticious virus. No Births or Deaths. Chance of reinfection, gamma.
+SIR (Susceptible, Infected, and Recovered) Model for a ficticious virus. No Births or Deaths. Chance of reinfection, gamma. Vaccination, Delta.
 
 DE's:
 
