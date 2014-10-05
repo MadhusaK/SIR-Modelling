@@ -19,6 +19,7 @@ S0 = 1-I0
 R0 = 0.00
 initial_pop = (S0, I0, R0)
 
+# Vector Field Paramters
 x_max = 1
 x_min = 0
 y_max = 1
@@ -47,6 +48,8 @@ def diff_SIR(SIR,t=0):
     return output_SIR
     
 def diff_SI(SI,t=0):
+    ''' ODE's for S, I with Vaccinations '''
+    
     output_SI = numpy.zeros(2)
     
     # S' = alpha*S*I + gamma*(1 - S - I)
