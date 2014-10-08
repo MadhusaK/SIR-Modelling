@@ -91,7 +91,9 @@ for i in range(points):
         S_vecField[i,j] = sol_Prime[0]
         I_vecField[i,j] = sol_Prime[1]
 
+N = numpy.sqrt(S_vecField**2 + I_vecField**2)
 
+S_vecField, I_vecField = S_vecField/N, I_vecField/N
     
 pyplot.figure(2)
 pyplot.hold(True)
@@ -101,19 +103,21 @@ pyplot.ylabel('Infected')
 pyplot.ylim(0,1)
 pyplot.xlim(0,1)
 
-for j in numpy.arange(0,0.1,0.05):
+
+for j in numpy.arange(0,1,0.2):
     sol = scipy.integrate.odeint(diff_SI,[1-j,j],t_rng)
-    pyplot.plot(sol[:,0],sol[:,1], label ='S =%s, I =%s' %(1,1))
-
-for j in numpy.arange(0,1,0.1):
-    sol = scipy.integrate.odeint(diff_SI,[1-j,j],t_rng)
-    pyplot.plot(sol[:,0],sol[:,1], label = 'S')
+    pyplot.plot(sol[:,0],sol[:,1],'-b', label = 'S')
 
 
-sol = scipy.integrate.odeint(diff_SI,[0.4,0.01],t_rng)
+sol = scipy.integrate.odeint(diff_SI,[S0,I0],t_rng)
+pyplot.plot(sol[:,0],sol[:,1],'-g')
+
+
+sol = scipy.integrate.odeint(diff_SI,[0.3,0.01],t_rng)
 pyplot.plot(sol[:,0],sol[:,1],'-b')
 
-
+sol = scipy.integrate.odeint(diff_SI,[0.85,0.01],t_rng)
+pyplot.plot(sol[:,0],sol[:,1],'-b')
 pyplot.hold(False)
 
 

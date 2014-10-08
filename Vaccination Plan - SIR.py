@@ -12,11 +12,16 @@ t_rng = numpy.arange(t_ini,t_end,t_inc)
 alpha = 0.2
 beta = 0.1
 gamma = 0.05
-delta = 0.05
+delta = 0.055
 
-I0 = 1/6.0
-S0 = 1/2.0
-R0 = 1/3.0
+I0 = 0.05
+S0 = 0.2
+R0 = 0.85
+
+#I0 = 1/6.0
+#S0 = 1/2.0
+#R0 = 1/3.0
+
 initial_pop = (S0, I0, R0)
 #initial_pop = (0.5, .000001, 0.5)
 
@@ -25,7 +30,7 @@ x_max = 1
 x_min = 0
 y_max = 1
 y_min = 0
-points = 15
+points = 25
 x = numpy.linspace(x_min,x_max,points)
 y = numpy.linspace(y_min,y_max,points)
 X,Y = numpy.meshgrid(x,y)
@@ -92,6 +97,10 @@ for i in range(points):
         S_vecField[i,j] = sol_Prime[0]
         I_vecField[i,j] = sol_Prime[1]
 
+N = numpy.sqrt(S_vecField**2 + I_vecField**2)
+
+S_vecField, I_vecField = S_vecField/N, I_vecField/N
+
 pyplot.figure(2)
 pyplot.hold(True)
 pyplot.quiver(X,Y,S_vecField,I_vecField)   
@@ -103,10 +112,5 @@ pyplot.xlim(0,1)
 sol = scipy.integrate.odeint(diff_SI,[1/2.0,1/6.0],t_rng)
 pyplot.plot(sol[:,0],sol[:,1], label ='S =%s, I =%s' %(1,1))
 
-sol = scipy.integrate.odeint(diff_SI,[1/2.0,1/2.0],t_rng)
-pyplot.plot(sol[:,0],sol[:,1], label ='S =%s, I =%s' %(1,1))
-
-sol = scipy.integrate.odeint(diff_SI,[0.99,0.01,0],t_rng)
-pyplot.plot(sol[:,0],sol[:,1], label ='S =%s, I =%s' %(1,1))
 
 pyplot.hold(False)
